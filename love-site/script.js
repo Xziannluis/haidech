@@ -1,7 +1,7 @@
 // Personalize these values and add your own photos/music to the named folders.
 const HER_NAME = "My Love";
 const LOVE_MESSAGE =
-  "In every version of my life, I hope I find my way back to you. Thank you for making the ordinary feel like my favorite place to be.";
+  "A 1 AM message, your 4 AM reply, and one long conversation led to our first date. It already felt like forever—and with you, I never have to pretend. Your laugh still makes me blush.";
 const BPM = 100;
 const BEAT_GAP_MS = 300;
 const PHOTO_CHANGE_MS = 1500;
@@ -75,7 +75,13 @@ const musicLabel = document.querySelector("#music-label");
 const audioStatus = document.querySelector("#audio-status");
 const audioHelpLink = document.querySelector("#audio-help-link");
 const yesButton = document.querySelector("#yes-button");
-const answerMessage = document.querySelector("#answer-message");
+const loveModal = document.querySelector("#love-modal");
+const closeLoveModalButton = document.querySelector("#close-love-modal");
+const loginForm = document.querySelector("#login-form");
+const passwordInput = document.querySelector("#site-password");
+const loginError = document.querySelector("#login-error");
+const loveSite = document.querySelector("#love-site");
+const SITE_PASSWORD = "haidechmylove";
 
 document.querySelector("#her-name")?.replaceChildren(document.createTextNode(HER_NAME));
 document.querySelector("#love-message")?.replaceChildren(document.createTextNode(LOVE_MESSAGE));
@@ -392,7 +398,25 @@ if (window.location.protocol === "file:") {
   if (audioHelpLink) audioHelpLink.hidden = false;
 }
 
-startSlowPhotoTimer();
+loginForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!passwordInput || !loginError || !loveSite) return;
+
+  if (passwordInput.value !== SITE_PASSWORD) {
+    loginError.textContent = "That isn't our secret. Try again, my love.";
+    passwordInput.value = "";
+    passwordInput.focus();
+    return;
+  }
+
+  loginError.textContent = "";
+  document.querySelector("#login-screen")?.setAttribute("hidden", "");
+  loveSite.hidden = false;
+  document.querySelector("#hero-title")?.focus();
+  positionPhotoStage();
+  changePhotos(3);
+  startSlowPhotoTimer();
+});
 
 // Fade content in as it enters view; keep it visible on older browsers.
 const revealElements = document.querySelectorAll(".reveal");
@@ -412,9 +436,8 @@ if ("IntersectionObserver" in window) {
 }
 
 yesButton?.addEventListener("click", () => {
-  if (answerMessage) {
-    answerMessage.textContent = "Then it's you and me, always. 🤍";
-  }
   yesButton.innerHTML = "<span>Always, together</span><span aria-hidden=\"true\">♡</span>";
-  yesButton.setAttribute("aria-pressed", "true");
+  loveModal?.showModal();
 });
+
+closeLoveModalButton?.addEventListener("click", () => loveModal?.close());

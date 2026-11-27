@@ -32,6 +32,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 button,
 a {
   color: inherit;
@@ -46,6 +50,115 @@ button:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--rose-bright);
   outline-offset: 5px;
+}
+
+.login-screen {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  padding: 28px 20px;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgb(58 43 51 / 38%), transparent 48%),
+    radial-gradient(ellipse at 80% 82%, rgb(44 83 92 / 17%), transparent 35%),
+    #101113;
+}
+
+.login-screen::before,
+.login-screen::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.login-screen::before {
+  opacity: 0.17;
+  background-image: radial-gradient(circle, rgb(255 245 226 / 72%) 0 0.7px, transparent 1px);
+  background-size: 23px 29px;
+}
+
+.login-screen::after {
+  border: 1px solid rgb(232 169 181 / 10%);
+  inset: 12px;
+}
+
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: min(440px, 100%);
+  padding: clamp(32px, 7vw, 58px) clamp(24px, 7vw, 56px);
+  border: 1px solid rgb(241 219 215 / 15%);
+  background: rgb(15 16 19 / 78%);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.login-card .eyebrow {
+  margin-bottom: 15px;
+}
+
+.login-card__heart {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--rose);
+  font-size: 25px;
+}
+
+.login-card h1 {
+  margin-bottom: 11px;
+  font-size: clamp(34px, 8vw, 46px);
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.login-card h1 em {
+  color: var(--rose-bright);
+  font-weight: 500;
+}
+
+.login-form {
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+
+.login-form label {
+  color: var(--rose-bright);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.login-form input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgb(241 219 215 / 24%);
+  border-radius: 2px;
+  background: rgb(8 9 11 / 65%);
+  color: var(--ink);
+  font: inherit;
+}
+
+.login-form input:focus-visible {
+  outline: 2px solid var(--rose-bright);
+  outline-offset: 3px;
+}
+
+.login-form .button {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.login-error {
+  min-height: 21px;
+  margin: 0;
+  color: var(--rose-bright);
+  font-size: 12px;
+  text-align: center;
 }
 
 .backdrop {
@@ -630,15 +743,6 @@ h2 em {
   background: var(--rose-bright);
 }
 
-.answer-message {
-  min-height: 24px;
-  margin: 16px 0 0;
-  color: var(--rose-bright);
-  font-family: var(--serif);
-  font-size: 18px;
-  font-style: italic;
-}
-
 .signature {
   margin: 26px 0 0;
   color: rgb(255 247 243 / 64%);
@@ -649,6 +753,59 @@ h2 em {
 
 .signature span {
   color: var(--rose);
+}
+
+.love-modal {
+  width: min(560px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100% - 32px);
+  padding: 0;
+  overflow: auto;
+  border: 1px solid rgb(241 219 215 / 20%);
+  background: #111214;
+  color: var(--ink);
+  box-shadow: 0 24px 90px rgb(0 0 0 / 55%);
+}
+
+.love-modal::backdrop {
+  background: rgb(6 7 9 / 78%);
+  backdrop-filter: blur(7px);
+}
+
+.love-modal__content {
+  padding: clamp(32px, 7vw, 58px) clamp(24px, 7vw, 56px);
+  text-align: center;
+}
+
+.love-modal__sparkle {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--gold);
+  font-size: 25px;
+}
+
+.love-modal h2 {
+  margin: 0 auto 15px;
+  font-size: clamp(35px, 7vw, 50px);
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.love-modal h2 em {
+  color: var(--rose-bright);
+  font-weight: 500;
+}
+
+.love-modal__message {
+  max-width: 430px;
+  margin: 0 auto 25px;
+  color: #c9bfbf;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.love-modal .button {
+  gap: 12px;
 }
 
 .site-footer {

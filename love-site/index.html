@@ -15,10 +15,35 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="style.css?v=15">
-    <script src="script.js?v=15" defer></script>
+    <link rel="stylesheet" href="style.css?v=17">
+    <script src="script.js?v=18" defer></script>
   </head>
   <body>
+    <section class="login-screen" id="login-screen" aria-labelledby="login-title">
+      <div class="login-card">
+        <p class="eyebrow"><span></span> just for us <span></span></p>
+        <span class="login-card__heart" aria-hidden="true">♡</span>
+        <h1 id="login-title">A little surprise <em>for you</em></h1>
+        <form class="login-form" id="login-form">
+          <label for="site-password">Our password</label>
+          <input
+            id="site-password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+            autofocus
+          >
+          <button class="button button--filled" type="submit">
+            <span>Unlock my heart</span>
+            <span aria-hidden="true">♡</span>
+          </button>
+          <p class="login-error" id="login-error" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <div id="love-site" hidden>
     <!-- A sparse, beat-reactive photo stage sits behind the love letter. -->
     <div class="backdrop" aria-hidden="true">
       <div class="stage-lights"></div>
@@ -58,8 +83,8 @@
     <main>
       <section class="hero section-shell" id="home" aria-labelledby="hero-title">
         <div class="hero__content reveal">
-          <p class="eyebrow"><span></span> a little something, just for you <span></span></p>
-          <h1 id="hero-title"><span id="her-name">My Love</span>, <em>I want a love like ours</em> <span class="title-heart">🤍</span></h1>
+          <p class="eyebrow"><span></span> where our story began <span></span></p>
+          <h1 id="hero-title" tabindex="-1"><span id="her-name">My Love</span>, <em>from 1 AM to forever</em> <span class="title-heart">🤍</span></h1>
           <p class="hero__message" id="love-message">
             In every version of my life, I hope I find my way back to you.
             Thank you for making the ordinary feel like my favorite place to be.
@@ -78,26 +103,26 @@
         <div class="section-heading reveal">
           <p class="eyebrow"><span></span> the beginning of everything <span></span></p>
           <h2 id="story-title">Our <em>Story</em></h2>
-          <p>Somehow, all my favorite memories have you in them.</p>
+          <p>One late-night hello became a story where I can always be myself.</p>
         </div>
         <div class="timeline">
           <article class="timeline-card reveal">
-            <span class="timeline-card__date">THE FIRST CHAPTER</span>
+            <span class="timeline-card__date">1 AM / THE FIRST MESSAGE</span>
             <span class="timeline-card__mark" aria-hidden="true">01</span>
-            <h3>When our worlds met</h3>
-            <p>One hello turned into a thousand conversations, and suddenly I was looking forward to every tomorrow.</p>
+            <h3>A hello before sunrise</h3>
+            <p>I messaged you at 1 AM; you replied at 4. One long conversation became the beginning of us.</p>
           </article>
           <article class="timeline-card reveal">
-            <span class="timeline-card__date">THE LITTLE THINGS</span>
+            <span class="timeline-card__date">OUR FIRST DATE</span>
             <span class="timeline-card__mark" aria-hidden="true">02</span>
-            <h3>Our kind of ordinary</h3>
-            <p>The quiet moments, the long laughs, the familiar looks. With you, even doing nothing feels like everything.</p>
+            <h3>It felt like forever</h3>
+            <p>Even after one date, being with you felt so natural. I didn't have to pretend; I could just be me.</p>
           </article>
           <article class="timeline-card reveal">
-            <span class="timeline-card__date">STILL UNFOLDING</span>
+            <span class="timeline-card__date">STILL CHOOSING US</span>
             <span class="timeline-card__mark" aria-hidden="true">03</span>
-            <h3>All that's still to come</h3>
-            <p>There are so many pages left to write. I hope I get to keep turning them with you, hand in hand.</p>
+            <h3>Your laugh, my favorite sound</h3>
+            <p>Your laugh still makes me blush. We've had hard moments, too; when worries about my past feel heavy, I want to listen, reassure you, and meet them with patience.</p>
           </article>
         </div>
       </section>
@@ -143,18 +168,17 @@
         </div>
       </section>
 
-      <!-- The button reveals its answer in place without navigating away. -->
+      <!-- The button opens a personal message in a modal. -->
       <section class="question section-shell" id="question" aria-labelledby="question-title">
         <div class="question__content reveal">
           <span class="question__sparkle" aria-hidden="true">✧</span>
           <p class="eyebrow"><span></span> one last thing <span></span></p>
           <h2 id="question-title">Will you keep choosing <em>us?</em></h2>
           <p class="question__message">Today, tomorrow, and in all the little moments in between?</p>
-          <button class="button button--filled" id="yes-button" type="button">
+          <button class="button button--filled" id="yes-button" type="button" aria-haspopup="dialog" aria-controls="love-modal">
             <span>Yes, always</span>
             <span aria-hidden="true">♡</span>
           </button>
-          <p class="answer-message" id="answer-message" role="status" aria-live="polite"></p>
           <p class="signature">All my love, always <span aria-hidden="true">♡</span></p>
         </div>
       </section>
@@ -165,5 +189,19 @@
       <span aria-hidden="true">✳</span>
       <span>AND A LITTLE BIT OF MAGIC</span>
     </footer>
+
+    <dialog class="love-modal" id="love-modal" aria-labelledby="love-modal-title">
+      <div class="love-modal__content">
+        <span class="love-modal__sparkle" aria-hidden="true">✧</span>
+        <p class="eyebrow"><span></span> a little promise <span></span></p>
+        <h2 id="love-modal-title">Then it's you and me, <em>always.</em></h2>
+        <p class="love-modal__message">
+          From our first late-night conversation to every day still ahead, you make me feel like I can be completely myself.
+          Your laugh still makes me blush. I want to keep choosing us—with patience, honesty, and all my love. 🤍
+        </p>
+        <button class="button button--filled" id="close-love-modal" type="button">Close, my love <span aria-hidden="true">♡</span></button>
+      </div>
+    </dialog>
+    </div>
   </body>
 </html>
