@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360">
+  <defs>
+    <linearGradient id="garden" x2="0" y2="1"><stop stop-color="#a28d91"/><stop offset="1" stop-color="#d6b1a6"/></linearGradient>
+  </defs>
+  <rect width="480" height="360" fill="url(#garden)"/>
+  <path d="M0 275q120-39 240 0t240-5v90H0Z" fill="#444943"/>
+  <g fill="none" stroke="#464742" stroke-width="8" stroke-linecap="round">
+    <path d="M103 285q6-78-11-151M103 235q-40-26-52-63M108 218q37-28 47-62M343 283q-4-86 26-157M354 223q-35-27-48-62M355 205q37-25 53-61"/>
+  </g>
+  <g fill="#c47f8d"><circle cx="88" cy="119" r="23"/><circle cx="51" cy="170" r="20"/><circle cx="150" cy="153" r="22"/><circle cx="371" cy="115" r="24"/><circle cx="309" cy="160" r="22"/><circle cx="408" cy="145" r="20"/></g>
+  <g fill="#f0d7c3"><circle cx="88" cy="119" r="7"/><circle cx="51" cy="170" r="7"/><circle cx="150" cy="153" r="7"/><circle cx="371" cy="115" r="7"/><circle cx="309" cy="160" r="7"/><circle cx="408" cy="145" r="7"/></g>
+</svg>

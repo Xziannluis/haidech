@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360">
+  <defs>
+    <linearGradient id="moonlight" x2="0" y2="1"><stop stop-color="#505d73"/><stop offset="1" stop-color="#a9879b"/></linearGradient>
+  </defs>
+  <rect width="480" height="360" fill="url(#moonlight)"/>
+  <circle cx="236" cy="100" r="57" fill="#f1e0cf" fill-opacity=".82"/>
+  <g fill="#f7eadd" opacity=".78"><circle cx="65" cy="65" r="2"/><circle cx="141" cy="104" r="2"/><circle cx="350" cy="67" r="2"/><circle cx="418" cy="134" r="2"/><circle cx="96" cy="168" r="1.5"/></g>
+  <path d="M0 227q105-21 221 3t259-7v137H0Z" fill="#393c48"/>
+  <path d="M47 224v-82h52v82m18 0v-116h57v116m185 0v-92h50v92m18 0v-128h36v128" fill="#292b35"/>
+  <g fill="#e8c0ae"><path d="M59 155h10v13H59zM77 155h10v13H77zM128 127h12v15h-12zM151 127h12v15h-12zM128 154h12v15h-12zM151 154h12v15h-12zM375 154h11v14h-11zM394 154h11v14h-11zM421 122h9v13h-9z"/></g>
+  <path d="M0 278q125-23 245 3t235-7v86H0Z" fill="#22252e"/>
+</svg>

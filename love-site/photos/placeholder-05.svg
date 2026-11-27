@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360">
+  <defs>
+    <linearGradient id="room" x2="0" y2="1"><stop stop-color="#847b82"/><stop offset="1" stop-color="#d0a6a4"/></linearGradient>
+  </defs>
+  <rect width="480" height="360" fill="url(#room)"/>
+  <rect x="38" y="35" width="177" height="197" fill="#34363d"/>
+  <rect x="48" y="45" width="157" height="177" fill="#ddbaac"/>
+  <path d="M126 45v177M48 132h157" stroke="#777078" stroke-width="6"/>
+  <path d="M0 270q135-23 253 4t227-9v95H0Z" fill="#34343a"/>
+  <path d="M280 270c-17-33-12-76 9-94 15-13 36-8 47 7 12 17 9 47 7 72l38 30H267Z" fill="#27282e"/>
+  <circle cx="311" cy="160" r="24" fill="#c08d87"/>
+  <path d="M287 160q10-33 42-26l16 20-23-8-19 9-16 19Z" fill="#383039"/>
+  <path d="M0 305q130-21 245 8t235-7" fill="none" stroke="#d4aa9f" stroke-opacity=".4" stroke-width="2"/>
+</svg>

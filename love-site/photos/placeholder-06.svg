@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360">
+  <defs>
+    <linearGradient id="bluehour" x2="0" y2="1"><stop stop-color="#596778"/><stop offset="1" stop-color="#c28e9a"/></linearGradient>
+  </defs>
+  <rect width="480" height="360" fill="url(#bluehour)"/>
+  <circle cx="108" cy="91" r="34" fill="#e9d7c6" fill-opacity=".76"/>
+  <path d="M0 221 66 180l42 35 64-77 78 82 68-96 71 91 47-42 44 31v156H0Z" fill="#41414a"/>
+  <path d="M0 275q93-47 199-6t281-5v96H0Z" fill="#292b32"/>
+  <path d="M104 258q87 33 197 4t179 6" fill="none" stroke="#dfb3b0" stroke-opacity=".42" stroke-width="3"/>
+  <path d="M218 270v-38m0 0-19 21m19-21 20 18" stroke="#25272e" stroke-width="8" stroke-linecap="round"/>
+</svg>
