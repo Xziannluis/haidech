@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360">
-  <defs><linearGradient id="sea" x2="0" y2="1"><stop stop-color="#75808a"/><stop offset=".6" stop-color="#d5a5a1"/><stop offset="1" stop-color="#58616b"/></linearGradient></defs>
-  <rect width="480" height="360" fill="url(#sea)"/><circle cx="362" cy="103" r="48" fill="#f4dfc6" fill-opacity=".75"/>
-  <path d="M0 221q115-21 235 3t245-8v144H0Z" fill="#65636a"/><path d="M0 270q135-23 255 3t225-8v95H0Z" fill="#303740"/>
-  <path d="M66 239v-68h5l18 68m50 0v-91h5l24 91m185 1v-81h5l22 81" stroke="#37353b" stroke-width="12" fill="none"/>
-  <path d="M24 289q115-22 228 3t200-5" fill="none" stroke="#e6c6b8" stroke-opacity=".48" stroke-width="3"/>
-</svg>

@@ -1,4 +1,4 @@
-// Personalize these values and add your own photos/music to the named folders.
+// Personalize these values and add your own photos, videos, and music to the named folders.
 const HER_NAME = "My Love";
 const LOVE_MESSAGE =
   "A 1 AM message, your 4 AM reply, and one long conversation led to our first date. It already felt like forever—and with you, I never have to pretend. Your laugh still makes me blush.";
@@ -19,6 +19,68 @@ const PHOTO_FILES = [
   "photos/photo-10.jpg",
   "photos/photo-11.jpg",
   "photos/photo-12.jpg",
+  "photos/photo-13.jpg",
+  "photos/photo-14.jpg",
+  "photos/photo-15.jpg",
+  "photos/photo-16.jpg",
+  "photos/photo-17.jpg",
+  "photos/photo-18.jpg",
+  "photos/photo-19.jpg",
+  "photos/photo-20.jpg",
+  "photos/photo-21.jpg",
+  "photos/photo-22.jpg",
+  "photos/photo-23.jpg",
+  "photos/photo-24.jpg",
+  "photos/photo-25.jpg",
+  "photos/photo-26.jpg",
+  "photos/photo-27.jpg",
+  "photos/photo-28.jpg",
+  "photos/photo-29.jpg",
+  "photos/photo-30.jpg",
+  "photos/photo-31.jpg",
+  "photos/photo-32.jpg",
+  "photos/photo-33.jpg",
+  "photos/photo-34.jpg",
+  "photos/photo-35.jpg",
+  "photos/photo-36.jpg",
+  "photos/photo-37.jpg",
+  "photos/photo-38.jpg",
+  "photos/photo-39.jpg",
+  "photos/photo-40.jpg",
+  "photos/photo-41.jpg",
+  "photos/photo-42.jpg",
+  "photos/photo-43.jpg",
+  "photos/photo-44.jpg",
+  "photos/photo-45.jpg",
+  "photos/photo-46.jpg",
+  "photos/photo-47.jpg",
+  "photos/photo-48.jpg",
+  "photos/photo-49.jpg",
+  "photos/photo-50.jpg",
+  "photos/photo-51.jpg",
+];
+// Clips join photos in the animated stage; add or remove MP4 paths as needed.
+const VIDEO_FILES = [
+  "videos/video-01.mp4",
+  "videos/video-02.mp4",
+  "videos/video-03.mp4",
+  "videos/video-04.mp4",
+  "videos/video-05.mp4",
+  "videos/video-06.mp4",
+  "videos/video-07.mp4",
+  "videos/video-08.mp4",
+  "videos/video-09.mp4",
+  "videos/video-10.mp4",
+  "videos/video-11.mp4",
+  "videos/video-12.mp4",
+  "videos/video-13.mp4",
+  "videos/video-14.mp4",
+  "videos/video-15.mp4",
+  "videos/video-16.mp4",
+  "videos/video-17.mp4",
+  "videos/video-18.mp4",
+  "videos/video-19.mp4",
+  "videos/video-20.mp4",
 ];
 const PLACEHOLDER_FILES = [
   "photos/placeholder-01.svg",
@@ -100,7 +162,7 @@ function makeSlot(index, layout) {
   slot.style.left = `${left}%`;
   slot.dataset.pageProgress = String(pageProgress);
   slot.style.width = `${width}vw`;
-  slot.dataset.photo = "";
+  slot.dataset.media = "";
   photoStage.append(slot);
   slots.push(slot);
 }
@@ -132,13 +194,40 @@ function loadImage(source) {
   });
 }
 
-const photoPoolReady = Promise.all(PHOTO_FILES.map(loadImage)).then(async (results) => {
-  const availablePhotos = results.filter(Boolean);
+function loadVideo(source) {
+  return new Promise((resolve) => {
+    const video = document.createElement("video");
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.onloadeddata = () => resolve({ source, type: "video" });
+    video.onerror = () => {
+      const message =
+        `Background video unavailable. Check for a supported MP4 at love-site/${source}.`;
+      if (audioStatus) audioStatus.textContent = message;
+      console.warn(message);
+      resolve(null);
+    };
+    video.src = source;
+  });
+}
+
+const mediaPoolReady = Promise.all([
+  ...PHOTO_FILES.map(async (source) => (
+    await loadImage(source) ? { source, type: "image" } : null
+  )),
+  ...VIDEO_FILES.map(loadVideo),
+]).then(async (results) => {
+  const availableMedia = results.filter(Boolean);
+  const availablePhotos = availableMedia.filter((media) => media.type === "image");
+  if (availablePhotos.length >= minimumPhotoCount) return availableMedia;
+
   const placeholders = await Promise.all(PLACEHOLDER_FILES.map(loadImage));
-  const availablePlaceholders = placeholders.filter(Boolean);
-  if (availablePhotos.length >= minimumPhotoCount) return availablePhotos;
+  const availablePlaceholders = placeholders
+    .filter(Boolean)
+    .map((source) => ({ source, type: "image" }));
   const neededPlaceholders = minimumPhotoCount - availablePhotos.length;
-  return [...availablePhotos, ...availablePlaceholders.slice(0, neededPlaceholders)];
+  return [...availableMedia, ...availablePlaceholders.slice(0, neededPlaceholders)];
 });
 
 function shuffle(items) {
@@ -186,15 +275,15 @@ async function changePhotos(count = 1) {
 
   photoChangeInProgress = true;
   try {
-    const photoPool = await photoPoolReady;
-    if (photoPool.length === 0) {
+    const mediaPool = await mediaPoolReady;
+    if (mediaPool.length === 0) {
       audioStatus.textContent = "Add photos to love-site/photos to fill the stage.";
       return;
     }
 
-    const activeSlots = slots.filter((slot) => slot.dataset.photo);
-    const emptySlots = slots.filter((slot) => !slot.dataset.photo);
-    const slotsToFill = Math.min(count, emptySlots.length, photoPool.length - activeSlots.length);
+    const activeSlots = slots.filter((slot) => slot.dataset.media);
+    const emptySlots = slots.filter((slot) => !slot.dataset.media);
+    const slotsToFill = Math.min(count, emptySlots.length, mediaPool.length - activeSlots.length);
     const slotsToRefresh = Math.min(count - slotsToFill, activeSlots.length);
     const nearbyFirst = (items) => {
       const currentTop = window.scrollY;
@@ -212,7 +301,7 @@ async function changePhotos(count = 1) {
       ...nearbyFirst(activeSlots).slice(0, slotsToRefresh),
     ];
     if (selected.length === 0) return;
-    const oldPhotos = new Map(selected.map((slot) => [slot, slot.dataset.photo]));
+    const oldMedia = new Map(selected.map((slot) => [slot, slot.dataset.media]));
 
     selected.forEach((slot) => {
       slot.querySelectorAll(".photo-slot__image").forEach((image) => {
@@ -225,39 +314,54 @@ async function changePhotos(count = 1) {
     await new Promise((resolve) => window.setTimeout(resolve, CROSSFADE_MS));
 
     selected.forEach((slot) => {
+      slot.querySelectorAll("video.photo-slot__image").forEach((video) => video.pause());
       slot.replaceChildren();
-      slot.dataset.photo = "";
+      slot.dataset.media = "";
     });
 
-    const usedPhotos = new Set(
+    const usedMedia = new Set(
       slots
         .filter((slot) => !selected.includes(slot))
-        .map((slot) => slot.dataset.photo)
+        .map((slot) => slot.dataset.media)
         .filter(Boolean),
     );
 
     selected.forEach((slot) => {
-      let choices = shuffle(photoPool.filter((photo) => !usedPhotos.has(photo)));
-      const previousPhoto = oldPhotos.get(slot);
+      let choices = shuffle(mediaPool.filter((media) => !usedMedia.has(media.source)));
+      const previousMedia = oldMedia.get(slot);
       if (choices.length > 1) {
-        choices = choices.filter((photo) => photo !== previousPhoto);
+        choices = choices.filter((media) => media.source !== previousMedia);
       }
-      const photo = choices[0];
-      if (!photo) return;
+      const media = choices[0];
+      if (!media) return;
 
-      usedPhotos.add(photo);
-      slot.dataset.photo = photo;
-      const image = document.createElement("img");
-      image.className = "photo-slot__image";
-      image.alt = "";
-      image.draggable = false;
-      image.src = photo;
-      slot.append(image);
+      usedMedia.add(media.source);
+      slot.dataset.media = media.source;
+      const mediaElement = document.createElement(media.type === "video" ? "video" : "img");
+      mediaElement.className = "photo-slot__image";
+      if (media.type === "video") {
+        mediaElement.muted = true;
+        mediaElement.loop = true;
+        mediaElement.autoplay = true;
+        mediaElement.playsInline = true;
+        mediaElement.preload = "metadata";
+        mediaElement.src = media.source;
+      } else {
+        mediaElement.alt = "";
+        mediaElement.draggable = false;
+        mediaElement.src = media.source;
+      }
+      slot.append(mediaElement);
 
       if (Math.random() < 0.25) {
         slot.append(makeDoodle());
       }
-      requestAnimationFrame(() => image.classList.add("is-visible"));
+      requestAnimationFrame(() => mediaElement.classList.add("is-visible"));
+      if (media.type === "video") {
+        mediaElement.play().catch((error) => {
+          console.warn(`Background video could not autoplay: ${error.message}`);
+        });
+      }
     });
   } finally {
     photoChangeInProgress = false;

@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360">
-  <defs><linearGradient id="city" x2="0" y2="1"><stop stop-color="#717988"/><stop offset="1" stop-color="#d1a2a3"/></linearGradient></defs>
-  <rect width="480" height="360" fill="url(#city)"/><circle cx="365" cy="83" r="43" fill="#f1ddc6" fill-opacity=".76"/>
-  <path d="M0 245h45v-93h52v93h37V125h65v120h40v-76h63v76h38V108h62v137h38v115H0Z" fill="#41434c"/>
-  <g fill="#ebc4ae"><path d="M57 170h11v15H57zM77 170h11v15H77zM149 147h13v17h-13zM174 147h13v17h-13zM252 190h13v16h-13zM332 140h13v16h-13zM354 140h13v16h-13zM411 179h13v17h-13z"/></g>
-  <path d="M0 281q128-29 255 2t225-7v84H0Z" fill="#262931"/>
-</svg>
